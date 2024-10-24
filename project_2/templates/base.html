@@ -1,0 +1,21 @@
+{% load static %}
+<!-- რაც ყველას საერთო აქვს-->
+{% include 'partials/header.html '%}
+{% include 'partials/spinner.html' %}
+{% include 'partials/navbar.html' %}
+{% include 'partials/modal_search_start.html' %}
+
+<!--ყველას აქვს indexის გარდა-->
+{% block except_index %}
+   {% include 'partials/single_page_header.html' %}
+{% endblock %}
+
+{% block content %}
+{% endblock %}
+
+<!-- ყველას აქვს-->
+{% include 'partials/footer.html' %}
+{% include 'partials/copyright.html' %}
+{% include 'partials/back_to_top.html' %}
+{% include 'partials/javascript_libraries.html' %}
+{% include 'partials/template_javascript.html' %}

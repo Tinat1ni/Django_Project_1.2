@@ -1,6 +1,5 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Product, Category
-from django.core.paginator import Paginator
 
 def home(request):
     return render(request, 'index.html')
@@ -40,3 +39,13 @@ def category_page(request, category_name):
             'view_name': category_name
     }
     return render(request, 'new_shop.html', context)
+
+def filter_by_price(request):
+    if request.method == 'POST':
+        max_price = request.POST.get('rangeInput')
+
+    products = Product.objects.filter(price__lte=max_price)
+
+
+    return render(request, 'new_shop.html', {'products': products})
+

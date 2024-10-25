@@ -46,18 +46,20 @@
                         </ul>
 
                         <h4 class="mb-2">Price</h4>
+                        <form method='POST' action="{% url 'store:filter_by_price' %}">
                         <input type="range" class="form-range w-100" id="rangeInput" name="rangeInput" min="0" max="500" value="0" oninput="amount.value=rangeInput.value">
                         <output id="amount">0</output>
-
+                        </form>
 
 
                         <div class="mb-2">
                                <form method="GET" action="{% url 'store:shop' %}" class="w-100">
+
                                  <input type="hidden" name="search" value="{{ search_query }}">
 
                                     <h4>Tags</h4>
                                  <div class="mb-2">
-                                    <input type="radio" class="me-2" id="fresh" name="category" value="fresh" {% if request.GET.category == 'fresh' %}checked{% endif %}>
+                                    <input type="radio" class="me-2" id="fresh" name="category" value="fresh" {% if request.GET.category== 'fresh' %}checked{% endif %}>
                                           <label for="fresh"> ახალი </label>
                                  </div>
                          <div class="mb-2">
@@ -89,9 +91,14 @@
                                         <div class="d-flex justify-content-between flex-lg-wrap mt-3">
                                             <p class="text-dark fs-5 fw-bold mb-0">${{ product.price }}₾ /კგ  </p>
 
-                                            <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary">
-                                                <i class="fa fa-shopping-bag me-2 text-primary"></i> დაამატე კალათაში
-                                            </a>
+                                            <form method="POST" action="{% url 'order:add_to_cart' product.id %}" >
+                                        {% csrf_token %}
+                                        <input type="hidden" name="product" value="{{ product.id }}">
+                                        <input type="hidden" name="quantity" value="1" min="1">
+                                        <button type="submit" class="btn border border-secondary rounded-pill px-3 text-primary">
+                                            <i class="fa fa-shopping-bag me-2 text-primary"></i> დაამატე კალათაში
+                                        </button>
+                                    </form>
                                         </div>
                                     </div>
                                 </div>

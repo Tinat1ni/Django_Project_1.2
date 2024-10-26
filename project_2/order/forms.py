@@ -11,17 +11,12 @@ class CartItemForm(forms.ModelForm):
 
     def clean(self):
         cleaned_data = super().clean()
-        product_id = cleaned_data.get('product')
+        product = cleaned_data.get('product')
         requested_quantity = cleaned_data.get('quantity')
 
-        try:
-            product = Product.objects.get(id=product_id)
-        except Product.DoesNotExist:
-            raise ValidationError(' selected product does not exist.')
-
-        if requested_quantity and product:
+        if product:
             if requested_quantity > product.quantity:
-                raise ValidationError(f'Only {product.quantity} units available.')
+                raise ValidationError(f'only {product.quantity} products available for {product.name}')
 
         return cleaned_data
 

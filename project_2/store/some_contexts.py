@@ -17,5 +17,5 @@ def shop_context(request):
         'top_level_categories': top_level_categories,
         'all_categories': all_categories,
         'view_name': view_name,
-        'cart_count': cart_count
+        'cart_count': cart_count,
     }

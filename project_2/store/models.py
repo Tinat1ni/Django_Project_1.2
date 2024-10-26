@@ -23,7 +23,7 @@ class Product(models.Model):
     quality = models.CharField(max_length=30)
     product_check = models.CharField(max_length=30)
     min_weight = models.FloatField(help_text='minimum weight in kg')
-
+    created_at = models.DateTimeField(auto_now_add=True)
     #organic = models.BooleanField(default=False)
     fresh = models.BooleanField(default=False)
     #sales = models.BooleanField(default=False)

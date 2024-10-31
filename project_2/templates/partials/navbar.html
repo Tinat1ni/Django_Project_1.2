@@ -10,6 +10,18 @@
                         <a href="#" class="text-white"><small class="text-white mx-2">Privacy Policy</small>/</a>
                         <a href="#" class="text-white"><small class="text-white mx-2">Terms of Use</small>/</a>
                         <a href="#" class="text-white"><small class="text-white ms-2">Sales and Refunds</small></a>
+                         <div class="d-flex align-items-center">
+                        {% if user.is_authenticated %}
+                        <!-- Logout button with POST request -->
+                        <form action="{% url 'user:logout' %}" method="post" class="d-inline">
+                          {% csrf_token %}
+                       <button type="submit" class="btn btn-primary btn-lg mx-2">Logout</button>
+                        </form>
+                       {% else %}
+                       <!-- Sign In button for anonymous users -->
+                       <a href="{% url 'user:login' %}" class="btn btn-primary btn-lg mx-2">Sign In</a>
+                       {% endif %}
+                       </div>
                     </div>
                 </div>
             </div>

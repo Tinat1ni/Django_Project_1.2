@@ -4,7 +4,11 @@ from django.views.generic import DetailView
 from .models import CartItem, Cart
 from store.models import Product
 from .forms import CartItemForm
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
+
+@method_decorator(login_required, name='dispatch')
 class AddToCartView(FormView):
     form_class = CartItemForm
     template_name = 'new_shop.html'
@@ -27,6 +31,7 @@ class AddToCartView(FormView):
         return redirect(referer_url)
 
 
+@method_decorator(login_required, name='dispatch')
 class CartView(DetailView):
     model = Cart
     template_name = 'cart.html'

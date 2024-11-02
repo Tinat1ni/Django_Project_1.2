@@ -52,7 +52,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'user.middleware.LastActiveMiddleware',
+    'user.middleware.SessionTimeoutMiddleware',
+
 ]
 
 ROOT_URLCONF = 'project_2.urls'
@@ -139,3 +140,5 @@ STATICFILES_DIRS = [
 
 LOGOUT_REDIRECT_URL = 'user:login'
 APPEND_SLASH = False
+
+LOGIN_URL = '/login/'

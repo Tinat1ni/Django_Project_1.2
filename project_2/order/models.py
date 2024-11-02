@@ -20,7 +20,7 @@ class CartItem(models.Model):
     #     return self.quantity * (self.product.price or 0)
 
     def __str__(self):
-        return f'cart of {self.user_id}'
+        return f'cart of {self.cart.user.username}'
 
 
     class Meta:

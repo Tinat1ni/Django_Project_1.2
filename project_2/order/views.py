@@ -6,9 +6,9 @@ from store.models import Product
 from .forms import CartItemForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.urls import reverse_lazy
 
-
-@method_decorator(login_required, name='dispatch')
+@method_decorator(login_required(login_url=reverse_lazy('user:login')), name='dispatch')
 class AddToCartView(FormView):
     form_class = CartItemForm
     template_name = 'new_shop.html'
@@ -31,7 +31,7 @@ class AddToCartView(FormView):
         return redirect(referer_url)
 
 
-@method_decorator(login_required, name='dispatch')
+@method_decorator(login_required(login_url=reverse_lazy('user:login')), name='dispatch')
 class CartView(DetailView):
     model = Cart
     template_name = 'cart.html'

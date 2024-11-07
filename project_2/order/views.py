@@ -7,7 +7,9 @@ from .forms import CartItemForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.urls import reverse_lazy
+from django.views.decorators.cache import never_cache
 
+@method_decorator(never_cache, name='dispatch')
 @method_decorator(login_required(login_url=reverse_lazy('user:login')), name='dispatch')
 class AddToCartView(FormView):
     form_class = CartItemForm

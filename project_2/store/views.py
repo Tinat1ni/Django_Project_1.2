@@ -1,12 +1,16 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
+from django.views.decorators.vary import vary_on_cookie
+
 from .models import Product, Category
 from django.views.generic import View, ListView, DetailView, TemplateView
-
+from django.views.decorators.cache import cache_page
+from django.utils.decorators import method_decorator
 
 class HomeView(TemplateView):          #for now
     template_name = 'index.html'
 
-
+@method_decorator(vary_on_cookie, name='dispatch')
+@method_decorator(cache_page(60 * 20), name='dispatch')
 class ShopView(ListView):
     model = Product
     template_name = 'new_shop.html'
@@ -73,8 +77,5 @@ class CategoryPageView(View):
         return render(request, self.template_name, context)
 
 
-
-
-
-
-
+def contact_view(request):
+    return render(request, 'contact.html')

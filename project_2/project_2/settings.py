@@ -25,6 +25,9 @@ SECRET_KEY = 'django-insecure-+55+vs=^g*jsw!ttr^fg9&$1xj*rx)3)410#+7j0h0q62#-w$5
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+# DEBUG = False
+
+# ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 ALLOWED_HOSTS = []
 
@@ -53,7 +56,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'user.middleware.SessionTimeoutMiddleware',
-
+    'user.middleware.ErrorPages',
 ]
 
 ROOT_URLCONF = 'project_2.urls'
@@ -113,7 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'ka'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Tbilisi'
 
 USE_I18N = True
 
@@ -139,6 +142,15 @@ STATICFILES_DIRS = [
 ]
 
 LOGOUT_REDIRECT_URL = 'user:login'
-APPEND_SLASH = False
+# APPEND_SLASH = False
 
 LOGIN_URL = '/login/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+#         'LOCATION': 'unique-snowflake',
+#     }
+# }

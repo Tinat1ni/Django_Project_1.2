@@ -29,7 +29,7 @@ class AddToCartView(FormView):
             cart_item.quantity += quantity
             cart_item.save()
 
-        referer_url = self.request.META.get('HTTP_REFERER', '')
+        referer_url = self.request.META.get('HTTP_REFERER', '/')
         return redirect(referer_url)
 
 

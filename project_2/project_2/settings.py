@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import os
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -35,6 +36,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'modeltranslation',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -45,11 +47,13 @@ INSTALLED_APPS = [
     'user',
     'store',
     'versatileimagefield',
+    'rosetta',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -57,6 +61,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'user.middleware.SessionTimeoutMiddleware',
     'user.middleware.ErrorPages',
+
 ]
 
 ROOT_URLCONF = 'project_2.urls'
@@ -119,8 +124,15 @@ LANGUAGE_CODE = 'ka'
 TIME_ZONE = 'Asia/Tbilisi'
 
 USE_I18N = True
-
+USE_L10N = True
 USE_TZ = True
+
+
+LANGUAGES = [
+    ('en', 'English'),
+    ('ka', 'Georgian'),
+]
+
 
 
 # Static files (CSS, JavaScript, Images)
@@ -154,3 +166,7 @@ CACHES = {
         'TIMEOUT': 60 * 20,
     }
 }
+
+LOCALE_PATHS = [
+    BASE_DIR / 'locale',
+]

@@ -9,11 +9,11 @@
 
                         <thead>
                           <tr>
-                            <th scope="col">პროდუქტი</th>
-                            <th scope="col">ფასი</th>
-                            <th scope="col">რაოდენობა</th>
-                            <th scope="col">Total</th>
-                            <th scope="col">წაშლა</th>
+                            <th scope="col">{% trans პროდუქტი %}</th>
+                            <th scope="col">{% trans ფასი %}</th>
+                            <th scope="col">{% trans რაოდენობა %}</th>
+                            <th scope="col">{% trans სულ %}</th>
+                            <th scope="col">{% trans წაშლა %}</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -58,7 +58,7 @@
                                         {% csrf_token %}
 
                                     <button name="remove_item" value="{{ item.id }}" class="btn btn-md rounded-circle bg-light border mt-4" >
-                                        <i class="fa fa-times text-danger"></i> წაშლა
+                                        <i class="fa fa-times text-danger"></i> {% trans წაშლა %}
                                     </button>
                                         </form>
 

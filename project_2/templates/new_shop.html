@@ -26,12 +26,12 @@
                     <div class="col-xl-3">
                         <form method="GET" action="{% url 'store:shop'%}">
                         <div class="bg-light ps-3 py-3 rounded d-flex justify-content-between mb-4">
-                            <label for="fruits">ფილტრი: </label>
+                            <label for="fruits">{% trans ფილტრი: %} </label>
                             <select id="fruits" name="fruitlist" class="border-0 form-select-sm bg-light me-3" onchange="this.form.submit();">
-                                <option value="price-"{% if request.GET.fruitlist == "price-"%}selected{% endif %}>ფასი ზრდ.</option>
-                                <option value="price+" {% if request.GET.fruitlist == "price+" %}selected{% endif %}>ფასი კლებ.</option>
-                                <option value="added+"{% if request.GET.fruitlist == "added+" %}selected{% endif %}>ბოლოს დამატებული</option>
-                                <option value="added-"{% if request.GET.fruitlist == "added-" %}selected{% endif %}>ბოლოს დამატებული კლებ.</option>
+                                <option value="price-"{% if request.GET.fruitlist == "price-"%}selected{% endif %}>{% trans ფასი ზრდ. %}</option>
+                                <option value="price+" {% if request.GET.fruitlist == "price+" %}selected{% endif %}>{% trans ფასი კლებ. %}</option>
+                                <option value="added+"{% if request.GET.fruitlist == "added+" %}selected{% endif %}>{% trans ბოლოს დამატებული %}</option>
+                                <option value="added-"{% if request.GET.fruitlist == "added-" %}selected{% endif %}>{% trans ბოლოს დამატებული კლებ. %}</option>
                             </select>
                         </div>
                             </form>
@@ -47,7 +47,7 @@
                             {% endfor %}
                         </ul>
 
-                        <h4 class="mb-2">Price</h4>
+                        <h4 class="mb-2">{% trans ფასი %}}</h4>
                         <form method='GET' action="{% url 'store:shop' %}" id="filterForm">
                         <input type="range" class="form-range w-100" id="rangeInput" name="rangeInput" min="0" max="500" value="0" oninput="amount.value=rangeInput.value; ">
                             <output id="amount">0</output>
@@ -65,15 +65,16 @@
                                     <h4>Tags</h4>
                                  <div class="mb-2">
                                     <input type="radio" class="me-2" id="fresh" name="category" value="fresh" {% if request.GET.category == 'fresh' %}checked{% endif %}>
-                                          <label for="fresh"> ახალი </label>
+                                          <label for="fresh"> {% trans ახალი %}</label>
                                  </div>
                          <div class="mb-2">
                                <input type="radio" class="me-2" id="discount" name="category" value="discount" {% if request.GET.category == 'discount' %}checked{% endif %}>
-                                     <label for="discount"> ფასდაკლება </label>
+                                     <label for="discount"> {% trans ფასდაკლება %} </label>
                         </div>
 
                         <div class="d-flex justify-content-center my-4">
-                            <button type="submit" class="btn border border-secondary px-4 py-3 rounded-pill text-primary w-100">Filter</button>
+                            <button type="submit" class="btn border border-secondary px-4 py-3 rounded-pill text-primary w-100">
+                                {% trans ფილტრი %}</button>
                         </div>
                </form>
                    </div>
@@ -106,7 +107,7 @@
                                         <input type="hidden" name="product" value="{{ product.id }}">
                                         <input type="hidden" name="quantity" value="1" min="1">
                                         <button type="submit" class="btn border border-secondary rounded-pill px-3 text-primary">
-                                            <i class="fa fa-shopping-bag me-2 text-primary"></i> დაამატე კალათაში
+                                            <i class="fa fa-shopping-bag me-2 text-primary"></i> {% trans დაამატე კალათაში %}
                                         </button>
                                     </form>
                                         </div>

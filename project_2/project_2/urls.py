@@ -16,7 +16,7 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -32,3 +32,7 @@ if settings.DEBUG:
 # handler404 = 'store.views.custom_404_view'
 # handler500 = 'store.views.custom_500_view'
 
+if 'rosetta' in settings.INSTALLED_APPS:
+    urlpatterns += [
+        re_path(r'^rosetta/', include('rosetta.urls'))
+    ]

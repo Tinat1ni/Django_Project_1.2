@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import  login
 from django.contrib import messages
+from django.utils.translation import gettext as _
 
 def register(request):
     if request.method == 'POST':
@@ -24,7 +25,7 @@ def login_view(request):
             login(request, form.get_user())
             return redirect('store:shop')
         else:
-            messages.error(request, 'Username or password is incorrect')
+            messages.error(request, _('Username or password is incorrect'))
     else:
         form = AuthenticationForm()
     return render(request, 'login.html', {'form': form})
